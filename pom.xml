@@ -31,8 +31,6 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-<<<<<<< Updated upstream
-=======
 				<cloudHubDeployment>
        				 <uri>https://anypoint.mulesoft.com/</uri>
      				 <muleVersion>${mule.version}</muleVersion>
@@ -46,7 +44,6 @@
 					 <objectStoreV2>true</objectStoreV2>
   </cloudHubDeployment>
   <classifier>mule-application</classifier>
->>>>>>> Stashed changes
 				</configuration>
 			</plugin>
 		</plugins>
