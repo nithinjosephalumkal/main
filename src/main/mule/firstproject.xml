@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
-	xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
-http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b1098da2-f9b0-4ee5-8217-40a4ba6951ff" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
-	<db:config name="Database_Config" doc:name="Database Config" doc:id="35bd64d8-04f3-4eb7-b84a-91fe205d9dab" >
-		<db:oracle-connection host="LocalHost" user="SYSTEM" password="Christ@dec2512##" />
-	</db:config>
 	<flow name="firstprojectFlow" doc:id="8c02b53a-017d-4c0f-abd7-239fa7073217" >
 		<http:listener doc:name="Listener" doc:id="48703b30-27b6-4c41-81bf-fdd038081b68" config-ref="HTTP_Listener_config" path="/apis"/>
-		<db:select doc:name="Select" doc:id="2a299e4f-a9e1-4c9f-920b-1c81d28fb185" config-ref="Database_Config">
-			<db:sql ><![CDATA[select * from DUMMY.routes]]></db:sql>
-		</db:select>
-		<ee:transform doc:name="Transform Message" doc:id="fa5ad778-f482-4965-9080-8bf292687ffe" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/csv
----
-payload]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
+		<set-payload value='"Hello World"' doc:name="Set Payload" doc:id="197c6c2b-5a2c-4088-8cc3-452e65db85b3" />
 	</flow>
 </mule>
